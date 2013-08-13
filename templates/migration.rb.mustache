@@ -1,0 +1,14 @@
+class Create{{plural_name}} < ActiveRecord::Migration
+  def change
+    create_table :{{plural_ref}} do |t|
+      {{#attributes}}
+      t.{{column_type}} :{{accessor}}
+      {{/attributes}}
+    end
+
+    # Index columns to speed up common queries
+    {{#indexed_attributes}}
+    add_index :{{plural_ref}}, :{{accessor}}
+    {{/indexed_attributes}}
+  end
+end

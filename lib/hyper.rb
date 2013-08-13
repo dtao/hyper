@@ -47,6 +47,13 @@ module Hyper
       write_file(output_dir, 'app', 'models', "#{model.singular_ref}.rb", model.render)
     end
 
+    # Generate migrations
+    migration_template = read_template_file('migration.rb')
+    domain.models.each do |model|
+      timestamp = Time.now.utc.strftime('%Y%m%d%H%M%S')
+      write_file(output_dir, 'db', 'migrate', "#{timestamp}_create_#{model.plural_ref}.rb", Mustache.render(migration_template, model))
+    end
+
     # Generate controller files
     controller_template = read_template_file('controller.rb')
     domain.models.each do |model|

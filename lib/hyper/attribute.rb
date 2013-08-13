@@ -32,6 +32,10 @@ class Attribute
     self.dependency? && "#{@name}_id" || @name
   end
 
+  def column_type
+    self.dependency? && 'integer' || @name
+  end
+
   def form_helper
     case self.type
     when Model

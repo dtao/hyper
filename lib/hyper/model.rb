@@ -59,6 +59,10 @@ class Model < Mustache
     @required_attributes ||= attributes.select(&:required?)
   end
 
+  def indexed_attributes
+    @indexed_attributes ||= attributes.select(&:dependency?) # TODO: Implement me more!
+  end
+
   # ----- Output helper methods -----
 
   def format_instance
