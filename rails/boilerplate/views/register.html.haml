@@ -1,0 +1,19 @@
+= form_tag do
+  .field
+    = label_tag(:name)
+    = text_field_tag(:name)
+
+  .field
+    = label_tag(:email)
+    = text_field_tag(:email)
+
+  .field
+    = label_tag(:password)
+    = password_field_tag(:password)
+
+  .field
+    = label_tag(:password_confirmation)
+    = password_field_tag(:password_confirmation)
+
+  .actions
+    = submit_tag('Log in')

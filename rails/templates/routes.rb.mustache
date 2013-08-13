@@ -1,0 +1,11 @@
+Example::Application.routes.draw do
+  root 'home#index'
+
+  match 'login'    => 'home#login',    :via => [:get, :post]
+  match 'register' => 'home#register', :via => [:get, :post]
+  get 'logout'     => 'home#logout'
+
+  {{#public_models}}
+  resources :{{plural_ref}}
+  {{/public_models}}
+end

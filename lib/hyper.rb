@@ -15,7 +15,7 @@ require 'hyper/model'
 require 'hyper/attribute'
 
 def read_template_file(*args)
-  File.read(File.join(File.dirname(__FILE__), '..', 'templates', *args) + '.mustache')
+  File.read(File.join(File.dirname(__FILE__), '..', 'rails', 'templates', *args) + '.mustache')
 end
 
 def write_file(*args)
@@ -78,5 +78,8 @@ module Hyper
         write_file(output_dir, 'app', 'views', model.plural_ref, "#{view}.html.haml", Mustache.render(view_template, model))
       end
     end
+
+    # Finally, copy over any pre-written boilerplate
+    FileUtils.cp_r(File.join(File.dirname(__FILE__), '..', 'rails', 'boilerplate'), File.join(output_dir, 'app'))
   end
 end
