@@ -1,6 +1,6 @@
 class Domain < Mustache
   def initialize(config)
-    @application_name = config['application_name']
+    @application_name = config['name']
 
     @models = {}
     config['models'].each do |name, spec|
