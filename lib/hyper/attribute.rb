@@ -33,7 +33,7 @@ class Attribute
   end
 
   def column_type
-    self.dependency? && 'integer' || @name
+    self.dependency? && 'integer' || @type
   end
 
   def form_helper
