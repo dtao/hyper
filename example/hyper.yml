@@ -12,6 +12,7 @@ models:
     attributes:
       name: string !primary
       email: string
+      password_digest: string
 
   Post:
     attributes:
