@@ -28,10 +28,19 @@ def write_file(*args)
   # Ensure the directory exists
   FileUtils.mkdir_p(args[0...-1].join('/'))
 
+  file_path = File.join(*args)
+
+  puts "Writing #{file_path}..."
+
   # Open the file, write to its input stream, close it
-  File.open(File.join(*args), 'w') do |f|
+  File.open(file_path, 'w') do |f|
     f.write(content)
   end
+end
+
+def copy_directory(src, dest)
+  puts "Copying #{src} to #{dest}..."
+  FileUtils.cp_r(Dir.glob(File.join(src, '*')), dest + '/')
 end
 
 module Hyper
@@ -82,6 +91,6 @@ module Hyper
 
     # Finally, copy over any pre-written boilerplate
     boilerplate_dir = File.join(File.dirname(__FILE__), '..', 'rails', 'boilerplate')
-    FileUtils.cp_r(Dir.glob(File.join(boilerplate_dir, '*')), File.join(output_dir, 'app/'))
+    copy_directory(boilerplate_dir, File.join(output_dir, 'app'))
   end
 end
