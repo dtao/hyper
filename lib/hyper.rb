@@ -49,9 +49,12 @@ module Hyper
 
     # Generate migrations
     migration_template = read_template_file('migration.rb')
-    domain.models.each do |model|
-      timestamp = Time.now.utc.strftime('%Y%m%d%H%M%S')
-      write_file(output_dir, 'db', 'migrate', "#{timestamp}_create_#{model.plural_ref}.rb", Mustache.render(migration_template, model))
+    timestamp = Time.now.utc.strftime('%Y%m%d%H%M%S').to_i
+    domain.models.each_with_index do |model, i|
+      # Versions need to be unique, so name them as if they all happened
+      # a second apart
+      version = timestamp + i
+      write_file(output_dir, 'db', 'migrate', "#{version}_create_#{model.plural_ref}.rb", Mustache.render(migration_template, model))
     end
 
     # Generate controller files
