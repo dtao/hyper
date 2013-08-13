@@ -8,14 +8,18 @@
       %ul
         // Public models
         {{#public_models}}
-        %li= link_to("{{plural_name}}", {{plural_ref}}_path)
+        %li= link_to('{{plural_name}}', {{plural_ref}}_path)
         {{/public_models}}
 
         // Private models
         - if logged_in?
           {{#private_models}}
-          %li= link_to("{{plural_name}}", {{plural_ref}}_path)
+          %li= link_to('{{plural_name}}', {{plural_ref}}_path)
           {{/private_models}}
+          %li= link_to('Log out', logout_path)
+
+        - else
+          %li= link_to('Log in', login_path)
   
       %main
         - if flash[:notice]

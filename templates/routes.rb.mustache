@@ -1,6 +1,9 @@
 Example::Application.routes.draw do
   root 'home#index'
 
+  get 'login'  => 'home#login'
+  get 'logout' => 'home#logout'
+
   {{#public_models}}
   resources :{{plural_ref}}
   {{/public_models}}
