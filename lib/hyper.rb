@@ -14,8 +14,11 @@ require 'hyper/domain'
 require 'hyper/model'
 require 'hyper/attribute'
 
+TEMPLATE_PATH = File.join(File.dirname(__FILE__), '..', 'rails', 'templates')
+Mustache.template_path = TEMPLATE_PATH
+
 def read_template_file(*args)
-  File.read(File.join(File.dirname(__FILE__), '..', 'rails', 'templates', *args) + '.mustache')
+  File.read(File.join(TEMPLATE_PATH, *args) + '.mustache')
 end
 
 def write_file(*args)
@@ -39,8 +42,6 @@ module Hyper
     # Load domain definitions from YAML
     config = YAML.load_file(File.join(input_dir, 'hyper.yml'))
     domain = Domain.new(config)
-
-    Mustache.template_path = File.join(File.dirname(__FILE__), '..', 'templates')
 
     # Generate model files
     domain.models.each do |model|
