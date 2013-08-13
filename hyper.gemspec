@@ -18,8 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^spec/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "activesupport"
-  spec.add_development_dependency "mustache"
+  spec.add_dependency "activesupport"
+  spec.add_dependency "mustache"
+
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rspec"
 end
