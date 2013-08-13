@@ -81,6 +81,7 @@ module Hyper
     end
 
     # Finally, copy over any pre-written boilerplate
-    FileUtils.cp_r(File.join(File.dirname(__FILE__), '..', 'rails', 'boilerplate'), File.join(output_dir, 'app'))
+    boilerplate_dir = File.join(File.dirname(__FILE__), '..', 'rails', 'boilerplate')
+    FileUtils.cp_r(Dir.glob(File.join(boilerplate_dir, '*')), File.join(output_dir, 'app/'))
   end
 end
