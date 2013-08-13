@@ -1,8 +1,11 @@
 name:
   Hyper Example
 
+tagline:
+  A demonstration of the Hyper gem
+
 description:
-  This is an example of how the gem **Hyper** works.
+  This is a demonstration of how the gem Hyper works.
 
 models:
   User:

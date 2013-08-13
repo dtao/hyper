@@ -1,15 +1,15 @@
 class Domain < Mustache
+  attr_reader :application_name, :tagline, :description
+
   def initialize(config)
     @application_name = config['name']
+    @tagline          = config['tagline']
+    @description      = config['description']
 
     @models = {}
     config['models'].each do |name, spec|
       @models[name] = Model.new(name, spec, self)
     end
-  end
-
-  def application_name
-    @application_name
   end
 
   def models

@@ -2,27 +2,35 @@
 %html
   %head
     %title {{application_name}}
-  
+    = stylesheet_link_tag('application', 'data-turbolinks-track' => true)
+    = javascript_include_tag('application', 'data-turbolinks-track' => true)
+    = csrf_meta_tags
+
   %body
-    %nav
-      %ul
-        // Public models
-        {{#public_models}}
-        %li= link_to('{{plural_name}}', {{plural_ref}}_path)
-        {{/public_models}}
+    %main
+      %header
+        %h1
+          {{application_name}}
+          %small {{tagline}}
 
-        // Private models
-        - if logged_in?
-          {{#private_models}}
+      %nav
+        %ul
+          // Public models
+          {{#public_models}}
           %li= link_to('{{plural_name}}', {{plural_ref}}_path)
-          {{/private_models}}
-          %li= link_to('Log out', logout_path)
+          {{/public_models}}
 
-        - else
-          %li= link_to('Log in', login_path)
+          // Private models
+          - if logged_in?
+            {{#private_models}}
+            %li= link_to('{{plural_name}}', {{plural_ref}}_path)
+            {{/private_models}}
+            %li= link_to('Log out', logout_path)
+
+          - else
+            %li= link_to('Log in', login_path)
   
-      %main
-        - if flash[:notice]
-          #notice= flash[:notice]
-  
-        = yield
+      - if flash[:notice]
+        #notice= flash[:notice]
+
+      = yield
