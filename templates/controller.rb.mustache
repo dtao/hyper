@@ -1,4 +1,4 @@
-class {{name}}Controller < ApplicationController
+class {{plural_name}}Controller < ApplicationController
   def index
     @{{plural_ref}} = current_user.{{plural_ref}}.order(:id => :desc).limit(20)
   end
