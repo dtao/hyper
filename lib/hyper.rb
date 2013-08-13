@@ -53,6 +53,10 @@ module Hyper
       write_file(output_dir, 'controllers', "#{model.plural_ref}_controller.rb", Mustache.render(controller_template, model))
     end
 
+    # Generate routes.rb
+    routes_template = read_template_file('routes.rb')
+    write_file(output_dir, 'config', 'routes.rb', Mustache.render(routes_template, domain))
+
     # Generate application layout
     layout_template = read_template_file('views', 'layouts', 'application.html.haml')
     write_file(output_dir, 'views', 'layouts', 'application.html.haml', Mustache.render(layout_template, domain))

@@ -1,0 +1,7 @@
+Example::Application.routes.draw do
+  root 'home#index'
+
+  {{#public_models}}
+  resources :{{plural_ref}}
+  {{/public_models}}
+end
