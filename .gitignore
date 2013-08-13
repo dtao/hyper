@@ -1,0 +1,11 @@
+# File patterns
+*.gem
+
+# Individual files
+Gemfile.lock
+
+# Directory patterns
+example/*
+
+# Exceptions
+!example/hyper.yml

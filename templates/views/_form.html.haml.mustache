@@ -1,0 +1,12 @@
+= form_for({{instance_ref}}) do |f|
+  %fieldset
+    %legend {{name}}
+
+    {{#attributes}}
+    .field
+      = f.label(:{{accessor}})
+      = f.{{form_helper}}
+    {{/attributes}}
+
+  .actions
+    = f.submit({{instance_ref}}.new_record? && 'Create {{name}}' || 'Update {{name}}')

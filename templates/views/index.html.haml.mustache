@@ -1,0 +1,15 @@
+%h1 {{plural_name}}
+
+%table.{{plural_css_class}}
+  %thead
+    %tr
+      {{#attributes}}
+      %th {{label}}
+      {{/attributes}}
+
+  %tbody
+    - @{{plural_ref}}.each do |{{singular_ref}}|
+      %tr.{{singular_css_class}}
+        {{#attributes}}
+        %td= {{singular_ref}}.{{name}}
+        {{/attributes}}

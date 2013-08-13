@@ -1,0 +1,16 @@
+class {{class_name}} < ActiveRecord::Base
+  # Requirements
+  {{#requirements}}
+  belongs_to :{{singular_ref}}
+  {{/requirements}}
+
+  # Dependents
+  {{#dependents}}
+  has_many :{{plural_ref}}
+  {{/dependents}}
+
+  # Required attributes
+  {{#required_attributes}}
+  validates_presence_of :{{name}}
+  {{/required_attributes}}
+end

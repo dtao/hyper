@@ -1,0 +1,31 @@
+class {{name}}Controller < ApplicationController
+  def index
+    @{{plural_ref}} = current_user.{{plural_ref}}.order(:id => :desc).limit(20)
+  end
+
+  def show
+    @{{singular_ref}} = {{name}}.find(params[:id])
+  end
+
+  def new
+    @{{singular_ref}} = {{name}}.new(:user => current_user)
+  end
+
+  def create
+    {{singular_ref}} = {{name}}.create!({{singular_ref}}_params)
+    flash[:notice] = "Successfully created {{name}}"
+    redirect_to({{singular_ref}})
+  end
+
+  def update
+    {{singular_ref}} = {{name}}.find(params[:id])
+    {{singular_ref}}.update_attributes({{singular_ref}}_params)
+    redirect_to({{singular_ref}})
+  end
+
+  private
+
+  def {{singular_ref}}_params
+    params.require(:{{singular_ref}}).permit({{required_attributes_as_symbols}})
+  end
+end

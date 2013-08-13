@@ -1,0 +1,24 @@
+!!! 5
+%html
+  %head
+    %title {{application_name}}
+  
+  %body
+    %nav
+      %ul
+        // Public models
+        {{#public_models}}
+        %li= link_to("{{plural_name}}", {{plural_ref}}_path)
+        {{/public_models}}
+
+        // Private models
+        - if logged_in?
+          {{#private_models}}
+          %li= link_to("{{plural_name}}", {{plural_ref}}_path)
+          {{/private_models}}
+  
+      %main
+        - if flash[:notice]
+          #notice= flash[:notice]
+  
+        = yield

@@ -1,0 +1,23 @@
+name:
+  Hyper Example
+
+description:
+  This is an example of how the gem **Hyper** works.
+
+models:
+  User:
+    attributes:
+      name: string !primary
+      email: string
+
+  Post:
+    attributes:
+      user: User
+      title: string
+      content: text
+
+  Comment:
+    attributes:
+      user: User
+      post: Post
+      content: text
